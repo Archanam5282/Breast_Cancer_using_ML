@@ -1,0 +1,93 @@
+#import the data
+Dataset = pd.read_csv("C:\\Users\\12035_\\OneDrive\\Desktop\\UNH Studies\\02_AI\\Final project (BC)\\Data.csv")
+#see columns
+Dataset.keys()
+Dataset.describe()
+
+#cleaning steps
+Dataset.loc[Dataset['diagnosis'] == "M", 'target'] = 0 
+Dataset.loc[Dataset['diagnosis'] =="B", 'target'] = 1
+
+del Dataset['diagnosis']
+
+#model training SVM
+#what are our input and outputs
+X=Dataset.drop(['target'], axis=1)
+y=Dataset['target']
+#print(y)
+X_train,X_test,y_train,y_test=train_test_split(X,y,test_size=0.20,random_state=5)
+#print(y_train)
+
+################## SVM Model ###########################
+svc_model=SVC()
+svc_model.fit(X_train,y_train)
+
+#predicting
+y_pred_svm=svc_model.predict(X_test)
+
+#confusion matrix for both data
+cnf_svm = metrics.confusion_matrix(y_test, y_pred_svm)
+cnf_svm
+
+#Accurary , pre and recall for SVM
+print("Accuracy:",metrics.accuracy_score(y_test, y_pred_svm))
+print("Precision:",metrics.precision_score(y_test, y_pred_svm))
+print("Recall:",metrics.recall_score(y_test, y_pred_svm))
+
+########################## Improving the model (part1)###########################
+min_value_train = X_train.min()
+#print(min_value)
+range_train=(X_train-min_value_train).max()
+#print(range_train)
+X_train_scale=(X_train-min_value_train)/range_train
+
+#scatterplot using X_train
+sns.scatterplot(x=X_train['area_mean'], y =X_train['smoothness_mean'], hue=y_train)
+
+#scatterplot using X_train_scale
+sns.scatterplot(x=X_train_scale['area_mean'], y =X_train_scale['smoothness_mean'], hue=y_train)
+
+#scaling for test data
+min_value_test= X_test.min()
+range_test=(X_test-min_value_test).max()
+X_test_scale=(X_test-min_value_test)/range_test
+
+################## SVM improved model (part2)###########################
+svc_model.fit(X_train_scale,y_train)
+#predicting
+y_pred_svm2=svc_model.predict(X_test_scale)
+cnf_svm2 = metrics.confusion_matrix(y_test, y_pred_svm2)
+print(cnf_svm2)
+
+#Accurary , pre and recall for SVM
+print("Accuracy:",metrics.accuracy_score(y_test, y_pred_svm2))
+print("Precision:",metrics.precision_score(y_test, y_pred_svm2))
+print("Recall:",metrics.recall_score(y_test, y_pred_svm2))
+
+#improving the model by optimising c and gamma
+para={"C":[0.1,1,10,100], 'gamma': [1,0.1,0.01,0.001], 'kernel':['rbf']}
+
+from sklearn.model_selection import GridSearchCV
+
+g=GridSearchCV(SVC(),para, refit=True, verbose=4)
+
+g.fit(X_train_scale,y_train)
+
+#select the best parameters
+g.best_params_
+
+newPredict=g.predict(X_test_scale)
+cnf_svm3 = metrics.confusion_matrix(y_test, newPredict)
+cnf_svm3
+
+#Accurary , pre and recall for SVM
+print("Accuracy:",metrics.accuracy_score(y_test, newPredict))
+print("Precision:",metrics.precision_score(y_test, newPredict))
+print("Recall:",metrics.recall_score(y_test, newPredict))
+
+
+
+
+
+
+
