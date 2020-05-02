@@ -1,0 +1,49 @@
+import numpy as np
+import pandas as pd
+import matplotlib.pyplot as plt
+import seaborn as sns
+from sklearn.model_selection import train_test_split 
+from sklearn.svm import SVC
+from sklearn.metrics import confusion_matrix
+from sklearn.tree import DecisionTreeClassifier
+from sklearn.linear_model import LogisticRegression
+from sklearn.tree import export_graphviz
+from sklearn.externals.six import StringIO 
+from IPython.display import Image 
+#from pydot import graph_from_dot_data
+from sklearn import metrics
+import warnings
+warnings.filterwarnings('ignore')
+
+#import the data
+Dataset = pd.read_csv("C:\\Users\\02_AI\\Final project (BC)\\Data.csv")
+#see columns
+Dataset.keys()
+Dataset.describe()
+
+#cleaning steps
+Dataset.loc[Dataset['diagnosis'] == "M", 'target'] = 0 
+Dataset.loc[Dataset['diagnosis'] =="B", 'target'] = 1
+
+del Dataset['diagnosis']
+#check for null values
+Dataset.isnull().sum()
+
+#see the counts for 0 and 1
+sns.countplot(x = 'target', data = Dataset, palette = 'hls')
+plt.show()
+
+#Data Visualisation
+sns.pairplot(Dataset, hue='target', vars=["radius_mean","texture_mean","perimeter_mean","area_mean","smoothness_mean"])
+
+#scatterplot
+sns.scatterplot(x='texture_mean', y ='radius_mean', hue='target', data=Dataset)
+
+#scatterplot
+sns.scatterplot(x='area_mean', y ='smoothness_mean', hue='target', data=Dataset)
+
+#checking the correlation
+plt.figure(figsize=(20,10))
+sns.heatmap(Dataset.corr(),annot=True)
+
+
