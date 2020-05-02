@@ -1,0 +1,103 @@
+#import the data
+Dataset = pd.read_csv("C:\\Users\\12035_\\OneDrive\\Desktop\\UNH Studies\\02_AI\\Final project (BC)\\Data.csv")
+#see columns
+Dataset.keys()
+Dataset.describe()
+#cleaning steps
+Dataset.loc[Dataset['diagnosis'] == "M", 'target'] = 0 
+Dataset.loc[Dataset['diagnosis'] =="B", 'target'] = 1
+
+del Dataset['diagnosis']
+#model training SVM
+#what are our input and outputs
+X=Dataset.drop(['target'], axis=1)
+y=Dataset['target']
+#print(y)
+
+
+X_train,X_test,y_train,y_test=train_test_split(X,y,test_size=0.20,random_state=5)
+logreg = LogisticRegression()
+logreg.fit(X_train,y_train)
+
+
+#Improving the model
+min_value_train = X_train.min()
+#print(min_value)
+range_train=(X_train-min_value_train).max()
+#print(range_train)
+X_train_scale=(X_train-min_value_train)/range_train
+#scaling for test data
+min_value_test= X_test.min()
+range_test=(X_test-min_value_test).max()
+X_test_scale=(X_test-min_value_test)/range_test
+
+
+from sklearn.linear_model import LogisticRegression
+from sklearn.naive_bayes import GaussianNB
+from sklearn.neighbors import KNeighborsClassifier
+from sklearn.tree import DecisionTreeClassifier
+from sklearn.ensemble import RandomForestClassifier
+
+from sklearn.metrics import roc_curve, roc_auc_score
+
+# Instantiate the classfiers and make a list
+classifiers = [SVC(probability=True),
+               LogisticRegression(random_state=1234), 
+               DecisionTreeClassifier(random_state=1234)]
+
+# Define a result table as a DataFrame
+result_table = pd.DataFrame(columns=['classifiers', 'fpr','tpr','auc'])
+
+# Train the models and record the results
+for cls in classifiers:
+    print(cls)
+    if (cls== classifiers[0]):
+        model = cls.fit(X_train_scale, y_train)
+        yproba = model.predict_proba(X_test_scale)[::,1]
+    else:
+        model = cls.fit(X_train, y_train)
+        yproba = model.predict_proba(X_test)[::,1]
+        
+    fpr, tpr, _ = metrics.roc_curve(y_test,  yproba)
+    auc = roc_auc_score(y_test, yproba)
+
+    result_table = result_table.append({'classifiers':cls.__class__.__name__,
+                                            'fpr':fpr, 
+                                            'tpr':tpr, 
+                                            'auc':auc}, ignore_index=True)
+
+# Set name of the classifiers as index labels
+result_table.set_index('classifiers', inplace=True)
+print(result_table)
+
+
+
+
+#logistic regression
+#y_pred_proba = logreg.predict_proba(X_test)[::,1]
+#fpr, tpr, _ = metrics.roc_curve(y_test,  y_pred_proba)
+#auc = metrics.roc_auc_score(y_test, y_pred_proba)
+#plt.plot(fpr,tpr,label="data 1, auc="+str(auc))
+#plt.legend(loc=4)
+#plt.show()
+
+
+fig = plt.figure(figsize=(8,6))
+
+for i in result_table.index:
+    plt.plot(result_table.loc[i]['fpr'], 
+             result_table.loc[i]['tpr'], 
+             label="{}, AUC={:.3f}".format(i, result_table.loc[i]['auc']))
+    
+plt.plot([0,1], [0,1], color='orange', linestyle='--')
+
+plt.xticks(np.arange(0.0, 1.1, step=0.1))
+plt.xlabel("Flase Positive Rate", fontsize=15)
+
+plt.yticks(np.arange(0.0, 1.1, step=0.1))
+plt.ylabel("True Positive Rate", fontsize=15)
+
+plt.title('ROC Curve Analysis', fontweight='bold', fontsize=15)
+plt.legend(prop={'size':13}, loc='lower right')
+
+plt.show()
