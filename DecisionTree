@@ -1,0 +1,27 @@
+###################################### Decision Tree Model #######################################
+X_train,X_test,y_train,y_test=train_test_split(X,y,test_size=0.20,random_state=5)
+DT = DecisionTreeClassifier()
+DT.fit(X_train, y_train)
+#predicting
+y_pred_DT=DT.predict(X_test)
+#confusion matrix for both data
+cnf_DT= metrics.confusion_matrix(y_test, y_pred_DT)
+cnf_DT
+
+#Accurary , pre and recall for DT
+print("Accuracy:",metrics.accuracy_score(y_test, y_pred_DT))
+print("Precision:",metrics.precision_score(y_test, y_pred_DT))
+print("Recall:",metrics.recall_score(y_test, y_pred_DT))
+
+# importing data
+Dataset = pd.read_csv("C:\\Users\\12035_\\OneDrive\\Desktop\\UNH Studies\\02_AI\\Final project (BC)\\Data.csv")
+#cleaning steps
+Dataset.loc[Dataset['diagnosis'] == "M", 'target'] = 0 
+Dataset.loc[Dataset['diagnosis'] =="B", 'target'] = 1
+del Dataset['diagnosis']
+X=Dataset.drop(['target'], axis=1)
+y=Dataset['target']
+X_train,X_test,y_train,y_test=train_test_split(X,y,test_size=0.20,random_state=5)
+
+#print(y)
+
