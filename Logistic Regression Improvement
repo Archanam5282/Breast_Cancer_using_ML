@@ -1,0 +1,238 @@
+#logistic regression
+y_pred_proba = logreg.predict_proba(X_test)[::,1]
+fpr, tpr, _ = metrics.roc_curve(y_test,  y_pred_proba)
+auc = metrics.roc_auc_score(y_test, y_pred_proba)
+plt.plot(fpr,tpr,label="data 1, auc="+str(auc))
+plt.legend(loc=4)
+plt.show()
+min_value_test= X_test.min()
+range_test=(X_test-min_value_test).max()
+X_test_scale=(X_test-min_value_test)/range_test
+y_pred_LR1=logreg.predict(X_test_scale)
+#confusion matrix for both data
+cnf_LR1= metrics.confusion_matrix(y_test, y_pred_LR1)
+cnf_LR1
+
+#Accurary , pre and recall for LR
+print("Accuracy:",metrics.accuracy_score(y_test, y_pred_LR1))
+print("Precision:",metrics.precision_score(y_test, y_pred_LR1))
+print("Recall:",metrics.recall_score(y_test, y_pred_LR1))
+
+y_pred_proba2 = logreg.predict_proba(X_test_scale)[::,1]
+fpr, tpr, _ = metrics.roc_curve(y_test,  y_pred_proba2)
+auc = metrics.roc_auc_score(y_test, y_pred_proba2)
+plt.plot(fpr,tpr,label="data 2, auc="+str(auc))
+plt.legend(loc=4)
+plt.show()
+
+#model training
+#what are our input and outputs
+X=Dataset.drop(['id'], axis=1)
+y=Dataset['target']
+
+#print(y)
+X_train,X_test,y_train,y_test=train_test_split(X,y,test_size=0.20,random_state=5)
+
+import math
+#sigmoid function 
+def sigmoid(output):
+    z = 1/(1+math.exp(-output)) 
+    return z
+    
+#0.001, 0.003, 0.01, 0.03, 0.1, 0.3
+a = 0.003
+# MSE
+MSE = np.array([])
+for epoch in range(len(X_train)):
+    
+    p_preds = np.array([])
+    p_pred_exps = np.array([])
+    
+    error_x1 = np.array([])
+    error_x2 = np.array([])
+    error_x3 = np.array([])
+    error_x4 = np.array([])
+    error_x5 = np.array([])
+    error_x6 = np.array([])
+    error_x7 = np.array([])
+    error_x8 = np.array([])
+    error_x9 = np.array([])
+    error_x10 = np.array([])
+    error_x11 = np.array([])
+    error_x12 = np.array([])
+    error_x13 = np.array([])
+    error_x14 = np.array([])
+    error_x15 = np.array([])
+    error_x16 = np.array([])
+    error_x17 = np.array([])
+    error_x18 = np.array([])
+    error_x19 = np.array([])
+    error_x20 = np.array([])
+    error_x21 = np.array([])
+    error_x22 = np.array([])
+    error_x23 = np.array([])
+    error_x24 = np.array([])
+    error_x25 = np.array([])
+    error_x26 = np.array([])
+    error_x27 = np.array([])
+    error_x28 = np.array([])
+    error_x29 = np.array([])
+    error_x30 = np.array([])
+    p_class = np.array([])
+    
+    # Assigning all the weights their new values after an epoch:
+    W0=W0_new
+    W1=W1_new
+    W2=W2_new
+    W3=W3_new
+    W4=W4_new
+    W5=W5_new
+    W6=W6_new
+    W7=W7_new
+    W8=W8_new
+    W9=W9_new
+    W10=W10_new
+    W11=W11_new
+    W12=W12_new
+    W13=W13_new
+    W14=W14_new
+    W15=W15_new
+    W16=W16_new
+    W17=W17_new
+    W18=W18_new
+    W19=W19_new
+    W20=W20_new
+    W21=W21_new
+    W22=W22_new
+    W23=W23_new
+    W24=W24_new
+    W25=W25_new
+    W26=W26_new
+    W27=W27_new
+    W28=W28_new
+    W29=W29_new
+    W30=W30_new
+   
+
+    
+    # Iterating through the Df and calculating all parameters:
+    for row in X_train.itertuples():
+        
+        #The predicted value:
+        p_pred = W1*row[1]+	W2*row[2]+W3*row[3]+W4*row[4]+W5*row[5]+W6*row[6]+W7*row[7]+W8*row[8]+W9*row[9]+W10*row[10]+W11*row[11]+	W12*row[12]+	W13*row[13]+	W14*row[14]+W15*row[15]+	W16*row[16]+	W17*row[17]+	W18*row[18]+	W19*row[19]+	W20*row[20]+W21*row[21]+	W22*row[22]+	W23*row[23]+	W24*row[24]+	W25*row[25]+	W26*row[26]+	W27*row[27]+	W28*row[28]+	W29*row[29]+	W30*row[30]
+        #print("p_pred",p_pred)
+        p_preds = np.append(p_preds, p_pred)
+        #print("p_pred",p_preds)
+        
+        # Predicted value after applying the sigmoid function
+        p_pred_exp = sigmoid(p_pred)
+        p_pred_exps = np.append(p_pred_exps, p_pred_exp)   
+        
+        # Bifurcating the predicted class as per its probability to be the default class
+    
+        if p_pred_exp > 0.5:
+            p_class = np.append(p_class,1)
+        else:
+            p_class = np.append(p_class,0)
+     
+    # The error in prediction
+    error = p_pred_exps - X_train.target 
+    print(error)
+    
+    # Pre-calculating the error*x values for all the weights:
+    error_x1= error*X_train.iloc[0]
+    error_x2= error*X_train.iloc[1]
+    error_x3= error*X_train.iloc[2]
+    error_x4= error*X_train.iloc[3]
+    error_x5= error*X_train.iloc[4]
+    error_x6= error*X_train.iloc[5]
+    error_x7= error*X_train.iloc[6]
+    error_x8= error*X_train.iloc[7]
+    error_x9= error*X_train.iloc[8]
+    error_x10= error*X_train.iloc[9]
+    error_x11= error*X_train.iloc[10]
+    error_x12= error*X_train.iloc[11]
+    error_x13= error*X_train.iloc[12]
+    error_x14= error*X_train.iloc[13]
+    error_x15= error*X_train.iloc[14]
+    error_x16= error*X_train.iloc[15]
+    error_x17= error*X_train.iloc[16]
+    error_x18= error*X_train.iloc[17]
+    error_x19= error*X_train.iloc[18]
+    error_x20= error*X_train.iloc[19]
+    error_x21= error*X_train.iloc[20]
+    error_x22= error*X_train.iloc[21]
+    error_x23= error*X_train.iloc[22]
+    error_x24= error*X_train.iloc[23]
+    error_x25= error*X_train.iloc[24]
+    error_x26= error*X_train.iloc[25]
+    error_x27= error*X_train.iloc[26]
+    error_x28= error*X_train.iloc[27]
+    error_x29= error*X_train.iloc[28]
+    error_x30= error*X_train.iloc[29]
+
+
+    
+    # Calculating MSE
+    MSE_val = (error).mean()
+    MSE = np.append(MSE,MSE_val)
+    
+    # Updating the weights
+    W0_new=W0-a*np.sum(error)
+    W1_new=W1-a*np.sum(error_x1)
+    W2_new=W2-a*np.sum(error_x2)
+    W3_new=W3-a*np.sum(error_x3)
+    W4_new=W4-a*np.sum(error_x4)
+    W5_new=W5-a*np.sum(error_x5)
+    W6_new=W6-a*np.sum(error_x6)
+    W7_new=W7-a*np.sum(error_x7)
+    W8_new=W8-a*np.sum(error_x8)
+    W9_new=W9-a*np.sum(error_x9)
+    W10_new=W10-a*np.sum(error_x10)
+    W11_new=W11-a*np.sum(error_x11)
+    W12_new=W12-a*np.sum(error_x12)
+    W13_new=W13-a*np.sum(error_x13)
+    W14_new=W14-a*np.sum(error_x14)
+    W15_new=W15-a*np.sum(error_x15)
+    W16_new=W16-a*np.sum(error_x16)
+    W17_new=W17-a*np.sum(error_x17)
+    W18_new=W18-a*np.sum(error_x18)
+    W19_new=W19-a*np.sum(error_x19)
+    W20_new=W20-a*np.sum(error_x20)
+    W21_new=W21-a*np.sum(error_x21)
+    W22_new=W22-a*np.sum(error_x22)
+    W23_new=W23-a*np.sum(error_x23)
+    W24_new=W24-a*np.sum(error_x24)
+    W25_new=W25-a*np.sum(error_x25)
+    W26_new=W26-a*np.sum(error_x26)
+    W27_new=W27-a*np.sum(error_x27)
+    W28_new=W28-a*np.sum(error_x28)
+    W29_new=W29-a*np.sum(error_x29)
+    W30_new=W30-a*np.sum(error_x30)
+
+
+# Adding the predicted class as a separate column to check for performance:
+X_train['pred_class']=p_class
+
+
+# Checking how many mis-classifications did our model come out with
+
+X_train.pred_class.astype('int64')
+X_train[X_train.pred_class != X_train.target]
+
+# Checking the final weights 
+print(W0_new,W1_new,W2_new,W3_new,W4_new,W5_new,W6_new,W7_new,W8_new,W9_new,W10_new,W11_new,W12_new,W13_new,W14_new,W15_new,W16_new,W17_new,W18_new,W19_new,W20_new,W21_new,W22_new,W23_new,W24_new,W25_new,W26_new,W27_new,W28_new,W29_new,W30_new,W30_new)
+
+print('TP: ',X_train.target[(X_train.target==1) & (X_train.pred_class==1)].count())
+# False Positives:
+print('FP: ',X_train.target[(X_train.target==0) & (X_train.pred_class==1)].count())
+#True Negatives:
+print('TN: ',X_train.target[(X_train.target==0) & (X_train.pred_class==0)].count())
+#False Negatives:
+print('FN: ',X_train.target[(X_train.target==1) & (X_train.pred_class==0)].count())
+
+
+
+
+
+
