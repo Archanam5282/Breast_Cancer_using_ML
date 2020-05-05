@@ -50,7 +50,7 @@ Order of the code :
 7) Improving Decision tree model
 8) ROC curve of best 3 models
 
-
+#What each code do:
 1) Data_Exploration
 Download the dataset from the link below:https://www.kaggle.com/uciml/breast-cancer-wisconsin-data
 Import the file into juyter
