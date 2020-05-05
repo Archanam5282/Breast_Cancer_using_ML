@@ -106,6 +106,13 @@ The model is trained and tested with the new models
 8) ROC curve of best 3 models
 To compare the results of all 3 models, I created a loop to run the 3 best models. With this resukts, I plotted a single ROC-AUC curve 
 
+###References
+https://www.kaggle.com/uciml/breast-cancer-wisconsin-data
+https://journals.plos.org/plosone/article/figures?id=10.1371/journal.pone.0140362
+https://towardsdatascience.com/real-world-implementation-of-logistic-regression-5136cefb8125
+https://towardsdatascience.com/building-a-logistic-regression-in-python-step-by-step-becd4d56c9c8
+https://towardsdatascience.com/logistic-regression-using-gradient-descent-optimizer-in-python-485148bd3ff2
+https://towardsdatascience.com/gradient-descent-algorithm-and-its-variants-10f652806a3
 
 
 
