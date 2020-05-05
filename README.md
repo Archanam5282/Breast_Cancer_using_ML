@@ -75,7 +75,7 @@ The data is standadised to [0,1] range and again trained anf tested the model.
 Next, c and gamma values are changed for the model. This is done by using a funtion to get the optimised value.
 Again the model is trained and tested. Confusion matrix is run for both the improvement methods
 
-4)Logistic_Regression
+4) Logistic_Regression
 Here first, the dataset is split into Test and Train data (80-20%)
 Further, from the Trian and Test data, diagnosis column is seperated. 
 There will be 4 datatsets now. X_train, y_train, X_test,y_test. Dataset with X will have all features and dataset y will have diagnosis column only.
@@ -85,11 +85,11 @@ Theb the results of predicted value and y_test are compared.
 Confusion matrix is plotted using the fuction
 Accuracy, Precision and Recall of model is shown using the in-built function
 
-5)Improving Logistic Model
+5) Improving Logistic Model
 The data is standadised to [0,1] range and again trained anf tested the model. 
 Second improvement is done by changing the weights and running the model with new weights obtained from the function
 
-6)DecisionTree
+6) DecisionTree
 Here first, the dataset is split into Test and Train data (80-20%)
 Further, from the Trian and Test data, diagnosis column is seperated. 
 There will be 4 datatsets now. X_train, y_train, X_test,y_test. Dataset with X will have all features and dataset y will have diagnosis column only.
