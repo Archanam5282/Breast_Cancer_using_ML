@@ -5,7 +5,6 @@ we are classifying cancer into malignant and benign using the features of severa
 Breast Cancer diagnosis using Machine Learning Model
 
 ##Project Description:
-Bread cancer is the most common cancer among the women worldwide. 
 There are 2 types of cancer, one is Benign and other is Malignent.
 Malignent is most dangerous one. Early diagnosis of this cancer significantly increases the chances of survival. 
 Machine learning models give more accuracy than doctors in diagnosis of cancer. 
