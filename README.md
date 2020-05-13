@@ -1,5 +1,5 @@
 # Breast_Cancer_using_ML
-we are classifying cancer into malignant and benign using the features of several cell images and feeding them into ML models
+Classifying cancer into malignant and benign using the features of several cell images and feeding them into ML models
 
 ##Project Title: 
 Breast Cancer diagnosis using Machine Learning Model
