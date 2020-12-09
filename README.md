@@ -1,10 +1,10 @@
 # Breast_Cancer_using_ML
 Classifying cancer into malignant and benign using the features of several cell images and feeding them into ML models
 
-##Project Title: 
+## Project Title: 
 Breast Cancer diagnosis using Machine Learning Model
 
-##Project Description:
+## Project Description:
 There are 2 types of cancer, one is Benign and other is Malignent.
 Malignent is most dangerous one. Early diagnosis of this cancer significantly increases the chances of survival. 
 Machine learning models give more accuracy than doctors in diagnosis of cancer. 
@@ -15,7 +15,7 @@ So we are classifying the 2 types of cancer.
 4)Two evaluation methods are used, Confusion matrix and ROC-AUC curve to evaluate the model
 The code for each step is explained below.
 
-##Prerequisites:
+## Prerequisites:
 Install Jupyter notebook or Spyder for easy python programming
 
 ##Packages
