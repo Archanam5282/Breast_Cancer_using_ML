@@ -56,122 +56,110 @@ Order of the code :
 ### Explaining each code:
 1) Data_Exploration
 
-Download the dataset from the link :https://www.kaggle.com/uciml/breast-cancer-wisconsin-data
+  Download the dataset from the link :https://www.kaggle.com/uciml/breast-cancer-wisconsin-data
 
-Import the file into juyter
+  Import the file into juyter
 
-Check the null values, if any value is not numeric then make it as zero-numeric
+  Check the null values, if any value is not numeric then make it as zero-numeric
 
-Changing the diagnosis column to 0 and 1 instead of M and B (Malignant and Benign) for future use. Delete the string column and keep the numeric column
+  Changing the diagnosis column to 0 and 1 instead of M and B (Malignant and Benign) for future use. Delete the string column and keep the numeric column
 
-Split for 0 and 1 is shown
+  Split for 0 and 1 is shown
 
-All the 30 features scatter plot is shown
+  All the 30 features scatter plot is shown
 
-Correlation is shown for all the 30 features
+  Correlation is shown for all the 30 features
 
 2) Support_vector_machine
 
-Here first, the dataset is split into Test and Train data (80-20%)
+  Here first, the dataset is split into Test and Train data (80-20%)
 
-Further, from the Trian and Test data, diagnosis column is seperated. 
+  Further, from the Trian and Test data, diagnosis column is seperated. 
 
-There will be 4 datatsets now. X_train, y_train, X_test,y_test. Dataset with X will have all features and dataset y will have diagnosis column only.
+  There will be 4 datatsets now. X_train, y_train, X_test,y_test. Dataset with X will have all features and dataset y will have diagnosis column only.
 
-SVC is used to fit the model for X_train and y_train.
+  SVC is used to fit the model for X_train and y_train.
 
-Then prediction is done for X_test using svc_predict.
+  Then prediction is done for X_test using svc_predict.
 
-Theb the results of predicted value and y_test are compared. 
+  Theb the results of predicted value and y_test are compared. 
 
-Confusion matrix is plotted using the fuction
+  Confusion matrix is plotted using the fuction
 
-Accuracy, Precision and Recall of model is shown using the in-built function
+  Accuracy, Precision and Recall of model is shown using the in-built function
 
 3) Improving SVM Model
 
-The data is standadised to [0,1] range and again trained anf tested the model. 
+  The data is standadised to [0,1] range and again trained anf tested the model. 
 
-Next, c and gamma values are changed for the model. This is done by using a funtion to get the optimised value.
+  Next, c and gamma values are changed for the model. This is done by using a funtion to get the optimised value.
 
-Again the model is trained and tested. Confusion matrix is run for both the improvement methods
+  Again the model is trained and tested. Confusion matrix is run for both the improvement methods
 
 4) Logistic_Regression
 
-Here first, the dataset is split into Test and Train data (80-20%)
+  Here first, the dataset is split into Test and Train data (80-20%)
 
-Further, from the Trian and Test data, diagnosis column is seperated. 
+  Further, from the Trian and Test data, diagnosis column is seperated. 
 
-There will be 4 datatsets now. X_train, y_train, X_test,y_test. Dataset with X will have all features and dataset y will have diagnosis column only.
+  There will be 4 datatsets now. X_train, y_train, X_test,y_test. Dataset with X will have all features and dataset y will have diagnosis column only.
 
-Logistic regression function is used to fit the model for X_train and y_train.
+  Logistic regression function is used to fit the model for X_train and y_train.
 
-Then prediction is done for X_test using predict.
+  Then prediction is done for X_test using predict.
 
-Theb the results of predicted value and y_test are compared. 
+  Theb the results of predicted value and y_test are compared. 
 
-Confusion matrix is plotted using the fuction
+  Confusion matrix is plotted using the fuction
 
-Accuracy, Precision and Recall of model is shown using the in-built function
+  Accuracy, Precision and Recall of model is shown using the in-built function
 
 5) Improving Logistic Model
 
-The data is standadised to [0,1] range and again trained anf tested the model. 
+  The data is standadised to [0,1] range and again trained anf tested the model. 
 
-Second improvement is done by changing the weights and running the model with new weights obtained from the function
+  Second improvement is done by changing the weights and running the model with new weights obtained from the function
 
 6) DecisionTree
 
-Here first, the dataset is split into Test and Train data (80-20%)
+  Here first, the dataset is split into Test and Train data (80-20%)
 
-Further, from the Trian and Test data, diagnosis column is seperated. 
+  Further, from the Trian and Test data, diagnosis column is seperated. 
 
-There will be 4 datatsets now. X_train, y_train, X_test,y_test. Dataset with X will have all features and dataset y will have diagnosis column only.
+  There will be 4 datatsets now. X_train, y_train, X_test,y_test. Dataset with X will have all features and dataset y will have diagnosis column only.
 
-Decision Tree function  is used to fit the model for X_train and y_train.
+  Decision Tree function  is used to fit the model for X_train and y_train.
 
-Then prediction is done for X_test using svc_predict.
+  Then prediction is done for X_test using svc_predict.
 
-Theb the results of predicted value and y_test are compared. 
+  Theb the results of predicted value and y_test are compared. 
 
-Confusion matrix is plotted using the fuction
+  Confusion matrix is plotted using the fuction
 
-Accuracy, Precision and Recall of model is shown using the in-built function
+  Accuracy, Precision and Recall of model is shown using the in-built function
 
 7) Improving Decision tree model
 
-Hyper parameters are changed to get the optimised parameters by using the scikit learn function
+  Hyper parameters are changed to get the optimised parameters by using the scikit learn function
 
-The model is trained and tested with the new models
+  The model is trained and tested with the new models
 
 8) ROC curve of best 3 models
 
-To compare the results of all 3 models, I created a loop to run the 3 best models. With this resukts, I plotted a single ROC-AUC curve 
+  To compare the results of all 3 models, I created a loop to run the 3 best models. With this resukts, I plotted a single ROC-AUC curve 
 
 ### References
-https://www.kaggle.com/uciml/breast-cancer-wisconsin-data
 
-https://journals.plos.org/plosone/article/figures?id=10.1371/journal.pone.0140362
+    https://www.kaggle.com/uciml/breast-cancer-wisconsin-data
 
-https://towardsdatascience.com/real-world-implementation-of-logistic-regression-5136cefb8125
+    https://journals.plos.org/plosone/article/figures?id=10.1371/journal.pone.0140362
 
-https://towardsdatascience.com/building-a-logistic-regression-in-python-step-by-step-becd4d56c9c8
+    https://towardsdatascience.com/real-world-implementation-of-logistic-regression-5136cefb8125
 
-https://towardsdatascience.com/logistic-regression-using-gradient-descent-optimizer-in-python-485148bd3ff2
+    https://towardsdatascience.com/building-a-logistic-regression-in-python-step-by-step-becd4d56c9c8
 
-https://towardsdatascience.com/gradient-descent-algorithm-and-its-variants-10f652806a3
+    https://towardsdatascience.com/logistic-regression-using-gradient-descent-optimizer-in-python-485148bd3ff2
 
-
-
-
-
-
-
-
-
-
-
-
-
+    https://towardsdatascience.com/gradient-descent-algorithm-and-its-variants-10f652806a3
 
 
