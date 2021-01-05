@@ -13,9 +13,13 @@ There are 2 types of cancer, one is Benign and other is Malignent.
 Malignent is most dangerous one. Early diagnosis of this cancer significantly increases the chances of survival. 
 Machine learning models give more accuracy than doctors in diagnosis of cancer. 
 So we are classifying the 2 types of cancer.
+
 1)Data from Kaggle website is used. The dataset consists of variables that has the values of features of cancer images.
+
 2)The dataset is divinded into test and train(80-20)
+
 3)Three machine learning models are used to train the test data. SVM, Logistic Regression and Decision Tree.
+
 4)Two evaluation methods are used, Confusion matrix and ROC-AUC curve to evaluate the model
 The code for each step is explained below.
 
